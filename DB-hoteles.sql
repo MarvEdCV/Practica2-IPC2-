@@ -382,6 +382,8 @@ insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_ti
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'1234','Guatemala','2020-09-22','simple',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,'1234','Honduras','1999-12-01','simple',0,null);
 
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Puente viejo',3,'1234','Guatemala','2011-09-03','simple',0,null);
+
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1980-12-15','individual',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1990-09-15','individual',0,'Día de la independencia');
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1995-06-25','individual',1,null);
@@ -403,6 +405,8 @@ insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_ti
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,3456,'Guatemala','2000-12-24','simple',0,'Navidad');
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,3456,'Guatemala','2019-09-22','simple',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,3456,'Honduras','1995-12-01','simple',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Colinas 2',4,3456,'El Salvador','2001-08-15','simple',1,null);
 
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,4567,'Guatemala','1980-12-24','individual',0,'Navidad');
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,4567,'Guatemala','2011-09-15','individual',0,'Día de la independencia');
@@ -499,8 +503,17 @@ select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de 
 	#consulta para todas las festividades juntas
 select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de las madres' or nombreFestividad = 'Día de la independencia' or nombreFestividad = 'Día de las madres' ;
 
-#
+#Top 5 de personas que más reservaciones han hecho por tipo de habitación.
+	#Top 5 simples.
+    select 	RESERVACION.No_ID, CLIENTE.Nombre,RESERVACION.nombre_tipo_habitacion from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID;
+(select count(nombre_tipo_habitacion) as 'Cantidad de reservaciones simples',RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where nombre_tipo_habitacion='simple' group by No_ID order by(count(nombre_tipo_habitacion)) desc limit 5);
+	#Top 5 indiviuales.
+(select count(nombre_tipo_habitacion)as 'Cantidad de reservaciones individuales', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where nombre_tipo_habitacion='individual' group by No_ID order by(count(nombre_tipo_habitacion)) desc limit 5);
 
+#Top 5 de personas que más reservaciones han hecho por tipo de hotel.
+(select count(NoEstrellas)as 'Cantidad de reservaciones por hotel de 3 estrellas', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where NoEstrellas=3 group by No_ID order by(count(NoEstrellas)) desc limit 5);
+(select count(NoEstrellas)as 'Cantidad de reservaciones por hotel de 4 estrellas', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where NoEstrellas=4 group by No_ID order by(count(NoEstrellas)) desc limit 5);
+(select count(NoEstrellas)as 'Cantidad de reservaciones por hotel de 5 estrellas', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where NoEstrellas=5 group by No_ID order by(count(NoEstrellas)) desc limit 5);
 
 select count(NombreHotel) as 'Cantidad de habitaciones', tipo from HABITACION group by tipo;
 
