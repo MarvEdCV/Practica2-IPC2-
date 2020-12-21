@@ -1,12 +1,14 @@
 create database hoteles;
 use hoteles;
 
+/*CREACION DE TABLAS:*/
 create table CLIENTE (
 No_ID int NOT NULL,
 Nombre varchar(25) NOT NULL,
 Apellido varchar(25) NOT NULL,
 primary key (No_ID)
 );
+
 
 create table DIAFESTIVO(
 nombreFestividad varchar(50) NOT NULL primary KEY
@@ -44,20 +46,25 @@ foreign key(tipo) references TIPOHABITACION(tipo)
 );
 
 create table RESERVACION(
+codigo_reservacion int auto_increment,
 NombreHotel varchar(75) not null,
 NoEstrellas int not null,
-NombrePais varchar(50) not null,
-No_ID int not null,
+No_ID int,
 nombreFestividad varchar(50),
+NombrePais varchar(50) not null,
 fecha date not null,
 salidaTarde bit,
-primary key(NombreHotel,NoEstrellas,NombrePais,No_ID),
+primary key(codigo_reservacion),
 foreign key(NombreHotel) references HOTEL(nombreHotel),
 foreign key(NoEstrellas) references HOTEL(NoEstrellas),
-foreign key(NombrePais) references HOTEL(NombrePais),
 foreign key(No_ID) references CLIENTE(No_ID),
+foreign key(NombrePais) references HOTEL(NombrePais),
 foreign key(nombreFestividad) references DIAFESTIVO(nombreFestividad)
 );
+alter table RESERVACION add nombre_tipo_habitacion varchar (25) not null;
+alter table RESERVACION add foreign key(nombre_tipo_habitacion) references HABITACION(tipo);
+
+/*INSERTS NECESARIOS:*/
 
 
 insert into CATEGORIA(NoEstrellas) values(3);
@@ -71,9 +78,6 @@ insert into PAIS(NombrePais) values('Nicaragua');
 insert into PAIS(NombrePais) values('Honduras');
 insert into PAIS(NombrePais) values('Costa Rica');
 insert into PAIS(NombrePais) values('Panama');
-
-select * from HABITACION;
-select * from HOTEL;
 
 insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Santa Elena',3,'Guatemala');
 insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Puente viejo',3,'Guatemala');
@@ -350,6 +354,139 @@ insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','simple',2);
 insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','individual',3);
 insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','individual',4);
 
+
+insert into DIAFESTIVO(nombreFestividad) values('Navidad');
+insert into DIAFESTIVO(nombreFestividad) values('Día de las madres');
+insert into DIAFESTIVO(nombreFestividad) values('Día de la independencia');
+
+insert into CLIENTE(No_ID,Nombre,Apellido) values(1234,'Rolando','Vasquez');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(2345,'Randy','Veliz');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(3456,'Rony','Sosa');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(4567,'Dilan','Lopez');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(5678,'Robert','Cajal');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(6789,'William','Lancerio');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(7890,'Alexandra','Calel');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(8901,'Marvin','Palencia');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(9012,'Rosario','Betancourt');
+insert into CLIENTE(No_ID,Nombre,Apellido) values(0123,'Candy','Sapata');
+
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'1234','Guatemala','2010-06-12','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'1234','Guatemala','2011-09-15','simple',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'1234','Guatemala','2015-06-25','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'1234','El Salvador','2000-07-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'1234','El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'1234','El Salvador','1989-11-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'1234','Guatemala','2012-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'1234','Guatemala','2010-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'1234','Guatemala','2020-09-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,'1234','Honduras','1999-12-01','simple',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1980-12-15','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1990-09-15','individual',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1995-06-25','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,2345,'El Salvador','2000-07-22','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,2345,'El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,2345,'El Salvador','2005-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,2345,'Guatemala','2009-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,2345,'Guatemala','2010-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,2345,'Guatemala','2015-09-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,2345,'Honduras','2020-12-01','individual',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','1900-05-01','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','2000-09-15','simple',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','1986-02-25','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,3456,'El Salvador','2000-08-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,3456,'El Salvador','2020-05-10','simple',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,3456,'El Salvador','1990-11-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,3456,'Guatemala','2014-12-12','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,3456,'Guatemala','2000-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,3456,'Guatemala','2019-09-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,3456,'Honduras','1995-12-01','simple',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,4567,'Guatemala','1980-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,4567,'Guatemala','2011-09-15','individual',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,4567,'Guatemala','1985-12-24','individual',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,4567,'El Salvador','1990-12-24','individual',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,4567,'El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,4567,'El Salvador','1992-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,4567,'Guatemala','1995-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,4567,'Guatemala','2010-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,4567,'Guatemala','2000-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,4567,'Honduras','2020-12-24','simple',0,'Navidad');
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,5678,'Guatemala','1980-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,5678,'Guatemala','2011-09-15','individual',1,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,5678,'Guatemala','1985-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,5678,'El Salvador','1989-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,5678,'El Salvador','2002-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,5678,'El Salvador','1995-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,5678,'Guatemala','2012-05-10','simple',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,5678,'Guatemala','2010-12-24','simple',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,5678,'Guatemala','2020-12-24','simple',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,5678,'Honduras','1999-12-24','simple',1,'Navidad');
+
+
+
+
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'6789','Guatemala','2010-06-12','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'6789','Guatemala','2011-09-15','simple',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,'6789','Guatemala','2015-06-25','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'6789','El Salvador','2000-07-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'6789','El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,'6789','El Salvador','1989-11-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'6789','Guatemala','2012-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'6789','Guatemala','2010-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'6789','Guatemala','2020-09-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,'6789','Honduras','1999-12-01','simple',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,7890,'Guatemala','1980-12-15','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,7890,'Guatemala','1990-09-15','individual',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,7890,'Guatemala','1995-06-25','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,7890,'El Salvador','2000-07-22','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,7890,'El Salvador','2002-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,7890,'El Salvador','2005-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,7890,'Guatemala','2009-11-22','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,7890,'Guatemala','2010-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,7890,'Guatemala','2015-09-22','individual',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,7890,'Honduras','2020-12-01','individual',0,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,8901,'Guatemala','1900-05-01','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,8901,'Guatemala','2000-09-15','simple',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,8901,'Guatemala','1986-02-25','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,8901,'El Salvador','2000-08-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,8901,'El Salvador','2020-05-10','simple',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,8901,'El Salvador','1990-11-22','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,8901,'Guatemala','2014-12-12','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,8901,'Guatemala','2000-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,8901,'Guatemala','2019-09-22','simple',1,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,8901,'Honduras','1995-12-01','simple',1,null);
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,9012,'Guatemala','1980-12-24','individual',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,9012,'Guatemala','2011-09-15','individual',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,9012,'Guatemala','1985-12-24','individual',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,9012,'El Salvador','1990-12-24','individual',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,9012,'El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,9012,'El Salvador','1992-12-24','individual',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,9012,'Guatemala','1995-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,9012,'Guatemala','2010-12-24','simple',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,9012,'Guatemala','2000-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,9012,'Honduras','2020-12-24','simple',0,'Navidad');
+
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,0123,'Guatemala','1980-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,0123,'Guatemala','2011-09-15','individual',0,'Día de la independencia');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,0123,'Guatemala','1985-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,0123,'El Salvador','1989-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,0123,'El Salvador','2002-05-10','individual',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Locus',4,0123,'El Salvador','1995-05-10','individual',1,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,0123,'Guatemala','2012-05-10','simple',0,'Día de las madres');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,0123,'Guatemala','2010-12-24','simple',0,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,0123,'Guatemala','2020-12-24','simple',1,'Navidad');
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,0123,'Honduras','1999-12-24','simple',0,'Navidad');
+
+
+/*CONSULTAS*/
 
 select count(NombreHotel) as 'Cantidad de hoteles', NombrePais from HOTEL group by NombrePais;
 select count(NombreHotel) as 'Cantidad de habitaciones', tipo from HABITACION group by tipo;
