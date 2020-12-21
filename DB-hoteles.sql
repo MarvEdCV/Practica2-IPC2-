@@ -34,6 +34,10 @@ primary key(NombreHotel,NoEstrellas,NombrePais),
 foreign key(NoEstrellas) references CATEGORIA(NoEstrellas),
 foreign key(NombrePais) references PAIS(NombrePais)
 );
+alter table HOTEL add codigo_reservacion int;
+alter table HOTEL add foreign key(codigo_reservacion) references RESERVACION(codigo_reservacion);
+alter table HOTEL add CodigoHabitacion int;
+alter table HOTEL add foreign key(CodigoHabitacion) references HABITACION(CodigoHabitacion);
 
 create table HABITACION(
 CodigoHabitacion int auto_increment,
@@ -382,7 +386,15 @@ insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_ti
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,'1234','Guatemala','2020-09-22','simple',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,'1234','Honduras','1999-12-01','simple',0,null);
 
-insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Puente viejo',3,'1234','Guatemala','2011-09-03','simple',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'1234','Honduras','2011-09-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'1234','Honduras','2011-12-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'1234','Honduras','2015-09-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'2345','Honduras','2011-09-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'2345','Honduras','2011-12-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'2345','Honduras','2015-09-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'3456','Honduras','2011-09-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'3456','Honduras','2011-12-03','individual',0,null);
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Dulcesito',3,'3456','Honduras','2015-09-03','individual',0,null);
 
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1980-12-15','individual',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,2345,'Guatemala','1990-09-15','individual',0,'Día de la independencia');
@@ -395,6 +407,7 @@ insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_ti
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Leon',5,2345,'Guatemala','2015-09-22','individual',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Star',5,2345,'Honduras','2020-12-01','individual',0,null);
 
+insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','1900-05-01','simple',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','1900-05-01','simple',0,null);
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','2000-09-15','simple',0,'Día de la independencia');
 insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_tipo_habitacion,salidaTarde,nombreFestividad) values('Santa Elena',3,3456,'Guatemala','1986-02-25','simple',1,null);
@@ -515,7 +528,21 @@ select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de 
 (select count(NoEstrellas)as 'Cantidad de reservaciones por hotel de 4 estrellas', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where NoEstrellas=4 group by No_ID order by(count(NoEstrellas)) desc limit 5);
 (select count(NoEstrellas)as 'Cantidad de reservaciones por hotel de 5 estrellas', RESERVACION.No_ID,CLIENTE.Nombre, CLIENTE.Apellido from RESERVACION inner join CLIENTE on RESERVACION.No_ID = CLIENTE.No_ID where NoEstrellas=5 group by No_ID order by(count(NoEstrellas)) desc limit 5);
 
-select count(NombreHotel) as 'Cantidad de habitaciones', tipo from HABITACION group by tipo;
+#Hoteles en los cuales las salidas se registran después de la hora del check out permitida.
+select DISTINCTROW RESERVACION.NombreHotel as 'Hotel donde se reportan salidas después de la hora'from RESERVACION where salidaTarde=1;
+
+#Tipo de habitación más reservada en cada hotel.
+select h.NombreHotel, max(r.nombre_tipo_habitacion) as 'Maximo tipo de habitacion reservada por hotel'
+from HOTEL h INNER JOIN RESERVACION r
+on h.NombreHotel = r.NombreHotel
+group by h.NombreHotel;
+
+# Tipo de habitación más reservada por tipo de hotel.
+select h.NoEstrellas,max(r.nombre_tipo_habitacion) as 'Maximo tipo de habitacion reservado por tipo de hotel'
+from HOTEL h INNER JOIN RESERVACION r 
+on h.NoEstrellas = r.NoEstrellas
+group by r.NoEstrellas;
+
 
 
 
