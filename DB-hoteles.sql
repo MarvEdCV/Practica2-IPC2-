@@ -258,15 +258,101 @@ insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Roolin','simple',2
 insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Roolin','individual',3);
 insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Roolin','individual',4);
 
-insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('','simple',1);
-insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('','simple',2);
-insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('','individual',3);
-insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('','individual',4);
 
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Leon',5,'Guatemala');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Cahul',5,'Guatemala');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Cilindroas 2',5,'Guatemala');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Rajilla',5,'Guatemala');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Trujillo',5,'Guatemala');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Lotus',5,'El Salvador');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Rostana',5,'El Salvador');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Monte x',5,'El Salvador');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Barranquilla',5,'El Salvador');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('El Paso',5,'El Salvador');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Round',5,'Honduras');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Rancho',5,'Honduras');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Corte',5,'Honduras');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Flamingo',5,'Honduras');
+insert into HOTEL(NombreHotel,NoEstrellas,NombrePais) values('Star',5,'Honduras');
 
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Leon','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Leon','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Leon','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Leon','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cahul','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cahul','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cahul','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cahul','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cilindroas 2','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cilindroas 2','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cilindroas 2','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Cilindroas 2','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rajilla','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rajilla','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rajilla','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rajilla','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Trujillo','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Trujillo','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Trujillo','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Trujillo','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Lotus','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Lotus','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Lotus','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Lotus','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rostana','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rostana','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rostana','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rostana','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Monte x','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Monte x','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Monte x','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Monte x','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Barranquilla','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Barranquilla','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Barranquilla','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Barranquilla','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('El Paso','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('El Paso','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('El Paso','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('El Paso','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Round','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Round','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Round','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Round','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rancho','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rancho','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rancho','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Rancho','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Corte','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Corte','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Corte','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Corte','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Flamingo','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Flamingo','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Flamingo','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Flamingo','individual',4);
+
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','simple',1);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','simple',2);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','individual',3);
+insert into HABITACION(NombreHotel,tipo,NoHabitacion) values('Star','individual',4);
 
 
 select count(NombreHotel) as 'Cantidad de hoteles', NombrePais from HOTEL group by NombrePais;
+select count(NombreHotel) as 'Cantidad de habitaciones', tipo from HABITACION group by tipo;
 
 
 
