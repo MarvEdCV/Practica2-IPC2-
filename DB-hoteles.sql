@@ -488,7 +488,20 @@ insert into RESERVACION(NombreHotel,NoEstrellas,No_ID,NombrePais,fecha,nombre_ti
 
 /*CONSULTAS*/
 
+#Cantidad de hoteles por pais
 select count(NombreHotel) as 'Cantidad de hoteles', NombrePais from HOTEL group by NombrePais;
+
+#Reservaciones de los hoteles de 4 y 5 estrellas por días festivos (navidad, día de las madres,día de la independencia).
+	#consultas por cada festividad.
+select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Navidad';
+select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de la independencia';
+select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de las madres';
+	#consulta para todas las festividades juntas
+select * from RESERVACION where NoEstrellas > 3 and nombreFestividad = 'Día de las madres' or nombreFestividad = 'Día de la independencia' or nombreFestividad = 'Día de las madres' ;
+
+#
+
+
 select count(NombreHotel) as 'Cantidad de habitaciones', tipo from HABITACION group by tipo;
 
 
