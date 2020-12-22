@@ -543,7 +543,13 @@ from HOTEL h INNER JOIN RESERVACION r
 on h.NoEstrellas = r.NoEstrellas
 group by r.NoEstrellas;
 
-
-
+# Cantidad de clientes en los hoteles por mes y por año.
+select month(fecha) mes_anio,count(No_ID) as 'Numero de reservaciones', NombreHotel
+from RESERVACION
+group by mes_anio
+UNION 
+select year(fecha) anio,count(No_ID),NombreHotel 
+from RESERVACION
+group by anio;
 
 
